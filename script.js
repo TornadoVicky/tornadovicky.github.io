@@ -1,6 +1,6 @@
 const config = {
   // IMPORTANT: Both must be the same length (14 chars)
-  text1: "FIRSTNAME LAST", 
+  text1: "SHUBHAM  KUMAR", 
   text2: "GAME DEVELOPER", 
   transitionDuration: 2500, // [cite: 4]
   spins: 1, 
