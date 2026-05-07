@@ -3,7 +3,7 @@ const config = {
   text1: "SHUBHAM  KUMAR", 
   text2: "GAME DEVELOPER", 
   transitionDuration: 2500, // [cite: 4]
-  spins: 1, 
+  spins: 5, 
   holdTime: 3000 // How long to stay on a name
 };
 
@@ -71,6 +71,9 @@ const handleToggle = () => {
 
 window.onload = () => {
   setup();
-  // Loop logic: wait for hold time + animation time before switching again
+  // Trigger the first roll almost immediately
+  setTimeout(handleToggle, 200); 
+  
+  // Start the regular loop
   setInterval(handleToggle, config.holdTime + config.transitionDuration);
 };
