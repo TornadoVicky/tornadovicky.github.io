@@ -1,0 +1,43 @@
+#prize {
+  /* Allow it to be wider instead of a fixed 88rem */
+  width: 95vw; 
+  max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 2;
+  background-color: rgb(var(--darker-rgb));
+  border: 1.5rem solid rgb(255 255 255 / 2.5%);
+  padding: 8rem 2rem; /* Slightly reduced padding */
+  box-shadow: 0rem 0rem 10rem 4rem rgb(0 0 0 / 75%);
+  backdrop-filter: blur(1rem);
+}
+
+#prize-text {  
+  display: flex;
+  gap: 0.25rem; /* Tighter gap between letters */
+  height: 6rem; /* Scaled down from 10rem */
+  line-height: 6rem;
+  font-size: 5.5rem; /* Scaled down from 11rem */
+}
+
+#prize-text > .digit {  
+  width: 4.5rem; /* Scaled down from 8rem */
+  position: relative;
+  overflow: hidden;
+  border-bottom: 0.25rem solid rgb(var(--theme-rgb));
+}
+
+#prize-text > .digit > .digit-track {  
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  translate: 0% 0%;
+  transition: translate 3000ms cubic-bezier(.1,.67,0,1);
+}
