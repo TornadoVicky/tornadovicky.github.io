@@ -1,7 +1,7 @@
 const config = {
   // IMPORTANT: Ensure both strings are exactly the same length! 
   // Add spaces to pad them if necessary.
-  text1: "FIRSTNAME LAST", // Replace with your 14-char name
+  text1: "SHUBHAM  KUMAR", // Replace with your 14-char name
   text2: "GAME DEVELOPER", 
   transitionDuration: 3000,
   spins: 2, // How many full alphabet loops it makes before stopping
