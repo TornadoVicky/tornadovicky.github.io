@@ -1,174 +1,51 @@
 :root {
-  --dark-rgb: 23 28 28;
   --darker-rgb: 8 13 7;
-  
   --green: 9 252 8;
-  --blue: 59 130 246;
-  --pink: 231 60 126;
-  
-  --background-rgb: 12 12 12;
   --theme-rgb: var(--green);
 }
 
 body {
   background-color: black;
-  height: 100vh;  
-  overflow: hidden;
-  font-family: "Orbitron", sans-serif;
   margin: 0;
-  padding: 0;
-}
-
-button {  
   font-family: "Orbitron", sans-serif;
+  /* Allow scrolling now that it's not a single-screen app */
+  overflow-y: auto; 
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-#app {
-  height: 100%;
+#header-band {
   width: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(
-    60deg, 
-    rgb(var(--background-rgb)) 30%, 
-    rgb(var(--theme-rgb) / 8%) 50%, 
-    rgb(var(--background-rgb)) 70%
-  );
-}
-
-#shapes {
-  height: calc(100% - 2rem);
-  width: calc(100% - 2rem);  
-  position: fixed;
-  left: 0%;
-  top: 0%;
-  z-index: 1;
-  margin: 1rem;
-  border: 0.15rem dashed rgb(var(--theme-rgb) / 30%);
-  pointer-events: none;
-}
-
-#shapes:before,
-#shapes:after {
-  content: "";
-  position: absolute;
-  background-color: rgb(255 255 255 / 15%);
-}
-
-#shapes:before {
-  height: 0.2rem;
-  width: 30%;
-  min-width: 10rem;
-  left: 10%;
-  top: 20%;
-}
-
-#shapes:after {
-  width: 0.2rem;
-  height: 20%;
-  min-height: 14rem;
-  right: 25%;
-  bottom: -2rem;
-}
-
-@keyframes float {
-  from, to { translate: 0% 0%; }
-  50% { translate: 0% 10%; }
-}
-
-#shapes > i {
-  position: absolute;
-  color: rgb(var(--theme-rgb));
-  opacity: 0.1;
-  animation: float 6000ms infinite;
-}
-
-#shapes > i.fa-circle {
-  font-size: 3rem;
-  left: 16%;
-  top: 4%;
-}
-
-#shapes > i.fa-triangle {
-  font-size: 8rem;
-  right: 8%;
-  top: 16%;
-  rotate: 4deg;
-  animation-delay: -2000ms;
-}
-
-#shapes > i.fa-square {
-  font-size: 4rem;
-  left: 32%;
-  bottom: 16%;
-  rotate: -2deg;
-  animation-delay: -4000ms;
-}
-
-/* Updated Sizing for 14 characters */
-#prize {
-  width: 95vw; 
-  max-width: 1400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  position: relative;
-  z-index: 2;
+  position: sticky;
+  top: 0;
+  z-index: 100;
   background-color: rgb(var(--darker-rgb));
-  border: 1.5rem solid rgb(255 255 255 / 2.5%);
-  padding: 8rem 2rem; 
-  box-shadow: 0rem 0rem 10rem 4rem rgb(0 0 0 / 75%);
-  backdrop-filter: blur(1rem);
+  border-bottom: 0.5rem solid rgb(255 255 255 / 5%);
 }
 
-#prize-label,
-#prize-text {
-  color: rgb(var(--theme-rgb));
-  text-align: center;
-}
-
-#prize-label {
+#prize {
+  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 2rem;
-  font-size: 3rem;
-  opacity: 0.75;
+  align-items: center;
+  position: relative;
+  /* Reduced height for a "bar" look */
+  padding: 2rem 0; 
+  background-color: rgb(var(--darker-rgb));
+  box-shadow: 0rem 0.5rem 2rem rgb(0 0 0 / 50%);
 }
 
-#prize-label > span {
-  display: inline-flex; 
-}
-
-#prize-label > .asterisk {
-  padding-top: 0.25em;
-  line-height: 0.5em;
-}
-
-/* Updated Sizing for 14 characters */
 #prize-text {  
   display: flex;
   gap: 0.25rem; 
-  height: 6rem; 
-  line-height: 6rem;
-  font-size: 5.5rem; 
+  height: 4rem; /* Smaller bar height */
+  line-height: 4rem;
+  font-size: 3.5rem; 
 }
 
-/* Updated Sizing for 14 characters */
 #prize-text > .digit {  
-  width: 4.5rem; 
+  width: 3rem; /* Narrower letters for the bar */
   position: relative;
   overflow: hidden;
-  border-bottom: 0.25rem solid rgb(var(--theme-rgb));
+  border-bottom: 2px solid rgb(var(--theme-rgb));
 }
 
 #prize-text > .digit > .digit-track {  
@@ -179,119 +56,25 @@ button {
   position: absolute;
   left: 0%;
   top: 0%;
-  translate: 0% 0%;
-  transition: translate 3000ms cubic-bezier(.1,.67,0,1);
+  transition: translate 3000ms cubic-bezier(.1,.67,0,1); [cite: 42]
 }
 
+/* scanline effect remains the same */
 .prize-filter {
   height: 100%;
   width: 100%;
   position: absolute;
-  left: 0%;
-  top: 0%;
+  left: 0;
+  top: 0;
   pointer-events: none;
-}
-
-@keyframes pan-lines {
-  from { background-position: 0% 0%; }
-  to { background-position: 0% -100%; }
 }
 
 #prize-lines {
   background: linear-gradient(
     rgb(var(--darker-rgb) / 15%) 0%,
     rgb(var(--darker-rgb) / 75%) 28%,
-    rgb(var(--darker-rgb) / 15%) 56%,
-    rgb(var(--darker-rgb) / 5%) 56%,
-    rgb(var(--darker-rgb) / 5%) 100%
+    rgb(var(--darker-rgb) / 15%) 56%
   );
-  background-size: 100% 7px;
+  background-size: 100% 4px;
   z-index: 2;
-  animation: pan-lines 360s infinite linear;
 }
-
-#prize-shadow {
-  background: radial-gradient(
-    rgb(var(--theme-rgb) / 1%) 20%, 
-    rgb(var(--darker-rgb) / 80%) 70%
-  );
-  z-index: 3;
-}
-
-#actions-wrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  position: fixed;
-  bottom: 2rem;
-  z-index: 10;
-}
-
-#actions {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 1rem;
-  background-color: rgb(0 0 0 / 50%);
-  border: 1px solid rgb(255 255 255 / 5%);
-  border-radius: 0.5rem;
-  backdrop-filter: blur(1rem);
-}
-
-#actions button {
-  height: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0rem 1.5rem;
-  background-color: rgb(255 255 255 / 5%);  
-  border-radius: 0.25rem;
-  border: 1px solid rgb(255 255 255 / 5%);
-  color: white;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  outline: none;
-  cursor: pointer;
-}
-
-#actions button:is(:hover, :focus-visible) {
-  background-color: rgb(255 255 255 / 7%);
-}
-
-#actions button:focus-visible {
-  border-color: rgb(255 255 255 / 15%);
-}
-
-#redo-button > i {  
-  padding-top: 0.2rem;
-}
-
-#theme-actions {
-  display: flex;
-  gap: 0.5rem;
-}
-
-#theme-actions > .theme-button > i {
-  color: white;
-  font-size: 1.25rem;
-}
-
-#theme-actions > .theme-button[data-theme="green"][data-selected="true"] > i {
-  color: rgb(var(--green));
-}
-
-#theme-actions > .theme-button[data-theme="blue"][data-selected="true"] > i {
-  color: rgb(var(--blue));
-}
-
-#theme-actions > .theme-button[data-theme="pink"][data-selected="true"] > i {
-  color: rgb(var(--pink));
-}
-
-@media(max-width: 1700px) { #prize { scale: 0.75; } }
-@media(max-width: 1300px) { #prize { scale: 0.5; } }
-@media(max-width: 900px) { #prize { scale: 0.3; } }
-@media(max-width: 600px) { #prize { scale: 0.2; } }
