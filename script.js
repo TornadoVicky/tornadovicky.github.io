@@ -2,8 +2,8 @@ const config = {
   // IMPORTANT: Both must be the same length (14 chars)
   text1: "SHUBHAM  KUMAR", 
   text2: "GAME DEVELOPER", 
-  transitionDuration: 2500, // [cite: 4]
-  spins: 5, 
+  transitionDuration: 4500, // [cite: 4]
+  spins: 3, 
   holdTime: 3000 // How long to stay on a name
 };
 
