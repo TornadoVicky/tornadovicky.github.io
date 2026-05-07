@@ -43,6 +43,7 @@ const buildTracks = (startingText) => {
     ).join("");
 
     track.style.transitionDuration = "0ms";
+    track.style.transitionDelay = "0ms";
     track.style.translate = "0rem 0rem";
   });
 };
@@ -56,6 +57,7 @@ const animateTo = (targetText) => {
     track.offsetHeight; 
     track.style.transitionDuration = `${config.transitionDuration}ms`;
     // Using 2.5 to match the new height
+    track.style.transitionDelay = `${index * 100}ms`;
     track.style.translate = `0rem ${itemsToScroll * -2.5}rem`; 
   });
 };
