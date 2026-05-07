@@ -57,7 +57,8 @@ const animateTo = (targetText) => {
     track.offsetHeight; 
     track.style.transitionDuration = `${config.transitionDuration}ms`;
     // Using 2.5 to match the new height
-    track.style.transitionDelay = `${index * 100}ms`;
+    const randomDelay = Math.floor(Math.random() * 1000);
+    track.style.transitionDelay = `${randomDelay}ms`;
     track.style.translate = `0rem ${itemsToScroll * -2.5}rem`; 
   });
 };
