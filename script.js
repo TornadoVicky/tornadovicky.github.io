@@ -1,9 +1,10 @@
 const config = {
+  // IMPORTANT: Both must be the same length (14 chars)
   text1: "FIRSTNAME LAST", 
   text2: "GAME DEVELOPER", 
-  transitionDuration: 2500,
+  transitionDuration: 2500, // [cite: 4]
   spins: 1, 
-  holdTime: 4000 // Time in milliseconds to wait before switching
+  holdTime: 3000 // How long to stay on a name
 };
 
 const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ".split("");
@@ -34,9 +35,9 @@ const buildTracks = (startingText) => {
     }
     trackChars = trackChars.concat(ALPHABET);
 
-    // Height updated to 4rem to match new CSS
+    // Height must match the #prize-text height in CSS (2.5rem)
     track.innerHTML = trackChars.map(c => 
-      `<div style="height: 4rem; display: flex; align-items: center; justify-content: center;">
+      `<div style="height: 2.5rem; display: flex; align-items: center; justify-content: center;">
         ${c === ' ' ? '&nbsp;' : c}
       </div>`
     ).join("");
@@ -54,7 +55,8 @@ const animateTo = (targetText) => {
 
     track.offsetHeight; 
     track.style.transitionDuration = `${config.transitionDuration}ms`;
-    track.style.translate = `0rem ${itemsToScroll * -4}rem`; // Updated to -4rem
+    // Using 2.5 to match the new height
+    track.style.translate = `0rem ${itemsToScroll * -2.5}rem`; 
   });
 };
 
@@ -69,6 +71,6 @@ const handleToggle = () => {
 
 window.onload = () => {
   setup();
-  // Start the infinite loop
+  // Loop logic: wait for hold time + animation time before switching again
   setInterval(handleToggle, config.holdTime + config.transitionDuration);
 };

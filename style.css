@@ -8,8 +8,7 @@ body {
   background-color: black;
   margin: 0;
   font-family: "Orbitron", sans-serif;
-  /* Allow scrolling now that it's not a single-screen app */
-  overflow-y: auto; 
+  overflow-x: hidden;
 }
 
 #header-band {
@@ -17,32 +16,34 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: rgb(var(--darker-rgb));
-  border-bottom: 0.5rem solid rgb(255 255 255 / 5%);
 }
 
 #prize {
-  width: 100%;
+  /* This makes it a full-width bar */
+  width: 100vw; 
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  /* Reduced height for a "bar" look */
-  padding: 2rem 0; 
+  
+  /* Reduced height for a slim bar look  */
+  padding: 1.5rem 0; 
   background-color: rgb(var(--darker-rgb));
-  box-shadow: 0rem 0.5rem 2rem rgb(0 0 0 / 50%);
+  border-bottom: 0.2rem solid rgb(var(--theme-rgb) / 20%);
+  box-shadow: 0rem 0.5rem 2rem rgb(0 0 0 / 80%);
 }
 
 #prize-text {  
   display: flex;
-  gap: 0.25rem; 
-  height: 4rem; /* Smaller bar height */
-  line-height: 4rem;
-  font-size: 3.5rem; 
+  gap: 0.2rem; 
+  height: 2.5rem; /* Slimmer height  */
+  line-height: 2.5rem;
+  font-size: 2rem; /* Smaller font for a header  */
+  color: rgb(var(--theme-rgb));
 }
 
 #prize-text > .digit {  
-  width: 3rem; /* Narrower letters for the bar */
+  width: 1.8rem; /* Narrower for small text [cite: 41] */
   position: relative;
   overflow: hidden;
   border-bottom: 2px solid rgb(var(--theme-rgb));
@@ -54,26 +55,25 @@ body {
   flex-direction: column;
   align-items: center;
   position: absolute;
-  left: 0%;
-  top: 0%;
-  transition: translate 3000ms cubic-bezier(.1,.67,0,1); [cite: 42]
+  left: 0;
+  top: 0;
+  /* Match this duration to config.transitionDuration in JS [cite: 42] */
+  transition: translate 2500ms cubic-bezier(.1,.67,0,1);
 }
 
-/* scanline effect remains the same */
+/* scanline effect simplified [cite: 43, 46] */
 .prize-filter {
   height: 100%;
   width: 100%;
   position: absolute;
-  left: 0;
-  top: 0;
   pointer-events: none;
 }
 
 #prize-lines {
   background: linear-gradient(
-    rgb(var(--darker-rgb) / 15%) 0%,
-    rgb(var(--darker-rgb) / 75%) 28%,
-    rgb(var(--darker-rgb) / 15%) 56%
+    rgb(var(--darker-rgb) / 10%) 0%,
+    rgb(var(--darker-rgb) / 40%) 50%,
+    rgb(var(--darker-rgb) / 10%) 100%
   );
   background-size: 100% 4px;
   z-index: 2;
