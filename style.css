@@ -329,13 +329,13 @@ body {
   box-shadow: 0 0 15px rgb(var(--card-rgb) / 50%);
 }
 
-/* Card GIF assignments - Update these names to your actual files */
-.card-1 { background-image: url('game1.gif'); }
-.card-2 { background-image: url('game2.gif'); }
-.card-3 { background-image: url('game3.gif'); }
-.card-4 { background-image: url('game4.gif'); }
-.card-5 { background-image: url('game5.gif'); }
-.card-6 { background-image: url('game6.gif'); }
+/* Update these to .webp */
+.card-1 { background-image: url('game1.webp'); }
+.card-2 { background-image: url('game2.webp'); }
+.card-3 { background-image: url('game3.webp'); }
+.card-4 { background-image: url('game4.webp'); }
+.card-5 { background-image: url('game5.webp'); }
+.card-6 { background-image: url('game6.webp'); }
 
 @media(max-width: 1000px) { #game-grid { grid-template-columns: repeat(2, 1fr); } }
 @media(max-width: 650px) { #game-grid { grid-template-columns: 1fr; } }

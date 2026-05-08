@@ -120,7 +120,8 @@ const initScroller = () => {
 // ==========================================
 // 4. CLEAN ONLOAD ORCHESTRATION
 // ==========================================
-window.addEventListener('load', () => {
+// Change 'load' to 'DOMContentLoaded'
+window.addEventListener('DOMContentLoaded', () => {
   // Init Header Spinner Loop
   setup(); 
   setTimeout(handleToggle, 200); 
