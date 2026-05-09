@@ -80,10 +80,8 @@ const handleToggle = () => {
   setTimeout(() => animateTo(targetText), 50);
 };
 
+// Footer Scroll
 
-// ==========================================
-// 3. BOTTOM FOOTER SCROLLER (WIDTH SYNC)
-// ==========================================
 const initScroller = () => {
   const scroller = document.getElementById('master-container-scroller');
   const items = document.querySelectorAll('.master-container-scroller_item');
@@ -91,18 +89,14 @@ const initScroller = () => {
 
   const totalItems = items.length;
   
-  // MATCH THE NEW CSS TIMING: 
-  // 30 seconds total divided by 10 scrolling steps = 3000ms per word
   const timePerItem = 3000; 
   
-  // Measure and set the initial word's width immediately on page load
   const firstWidth = items[0].querySelector('span').offsetWidth;
   scroller.style.width = firstWidth + 'px';
 
   let currentIndex = 0;
 
   setInterval(() => {
-    // We increment index BEFORE pulling the width to remain in perfect sync
     currentIndex = (currentIndex + 1) % totalItems;
     const activeItem = items[currentIndex];
     const nextWidth = activeItem.querySelector('span').offsetWidth;
@@ -111,17 +105,11 @@ const initScroller = () => {
   }, timePerItem);
 };
 
+// Window load
 
-// ==========================================
-// 4. CLEAN ONLOAD ORCHESTRATION
-// ==========================================
-// Change 'load' to 'DOMContentLoaded'
 window.addEventListener('DOMContentLoaded', () => {
-  // Init Header Spinner Loop
   setup(); 
   setTimeout(handleToggle, 200); 
   setInterval(handleToggle, config.holdTime + config.transitionDuration + 1000);
-
-  // Init Bottom Panel Scroller Loop
   initScroller();
 });
