@@ -25,7 +25,6 @@ body {
   align-items: center;
   position: relative;
   
-  /* SMALLER PADDING */
   padding: 0.8rem 0; 
   background-color: rgb(var(--darker-rgb));
   border-bottom: 0.2rem solid rgb(var(--theme-rgb) / 20%);
@@ -39,7 +38,6 @@ body {
   line-height: 3.5rem;
   font-size: 3.2rem; 
   color: rgb(var(--theme-rgb));
-  /* Ensure no background is accidentally inherited */
   background: transparent; 
 }
 
@@ -47,24 +45,20 @@ body {
   width: 2.4rem; 
   position: relative;
   overflow: hidden;
-  /* Remove the box-shadow that was causing the rectangular glow */
   box-shadow: none; 
   border-bottom: 2px solid rgb(var(--theme-rgb) / 30%);
 }
 
-/* Apply the animation to the text/digits specifically */
 .digit-track {
   animation: neon-glow 3s ease-in-out infinite alternate;
 }
 
 @keyframes neon-glow {
   from {
-    /* Subtle glow - no box effect */
     text-shadow: 
       0 0 2px rgb(var(--theme-rgb) / 80%);
   }
   to {
-    /* Sharp neon glow - centered on the letters */
     text-shadow: 
       0 0 4px #fff,
       0 0 10px rgb(var(--theme-rgb)), 
@@ -80,11 +74,9 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  /* Smoother cubic-bezier for the 'spinning' effect */
   transition: translate 4500ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
 
-/* scanline effect simplified [cite: 43, 46] */
 .prize-filter {
   height: 100%;
   width: 100%;
@@ -102,18 +94,15 @@ body {
   z-index: 2;
 }
 
-/* --- Keep all your existing :root, body, and #prize styles here --- */
-
 #game-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  grid-template-columns: repeat(3, 1fr);
   gap: 40px;
   padding: 60px 20px 120px 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Add these new tint variables to your existing style.css */
 .tint-green  { --card-rgb: 9, 252, 8;   --hue: 120deg; }
 .tint-blue   { --card-rgb: 33, 150, 243; --hue: 200deg; }
 .tint-red   { --card-rgb: 231, 60, 60; --hue: 0deg; }
@@ -130,33 +119,29 @@ body {
   border-radius: 1rem;
   overflow: hidden;
   position: relative;
-  z-index: 1; /* Base layer */
+  z-index: 1;
 
-  /* DEFAULT VIGNETTE */
   box-shadow: 
     inset 0 0 100px rgb(0 0 0 / 90%), 
     inset 0 0 20px rgb(var(--card-rgb) / 20%);
     
   background-color: rgb(var(--card-rgb) / 5%);
   
-  /* ADD TRANSFORM HERE: The whole card starts at normal size */
   transform: scale(1);
 
-  /* SMOOTH TRANSITION: Includes box-shadow and transform */
   transition: 
     box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1),
     transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .screen:hover {
-  /* HOVER STATE: Card grows by 8% and jumps to the front layer */
   transform: scale(1.08);
   z-index: 10; 
 
   box-shadow: 
     inset 0 0 30px rgb(0 0 0 / 40%),
     inset 0 0 40px rgb(var(--card-rgb) / 40%),
-    0 0 30px rgb(var(--card-rgb) / 40%); /* Extra outer glow when big */
+    0 0 30px rgb(var(--card-rgb) / 40%);
 }
 
 .screen-image {
@@ -167,10 +152,8 @@ body {
   background-size: cover;
   background-position: center;
   
-  /* DEFAULT DARKNESS */
   filter: brightness(0.5) contrast(1.1);
   
-  /* Image no longer scales independently */
   transition: filter 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -185,7 +168,6 @@ body {
   z-index: 2;
   left: 0;
   top: 0;
-  /* Reverted to shadowy dark lines */
   background: linear-gradient(
     rgb(var(--darker-rgb) / 0.45) 0%,
     rgb(var(--darker-rgb) / 0.45) 3px, 
@@ -194,7 +176,6 @@ body {
   );
   background-size: 100% 6px;
   
-  /* Keeps the slow downward crawl */
   animation: pan-overlay 22s linear infinite;
 }
 
@@ -208,7 +189,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  padding-bottom: 2.5rem; /* Space from bottom */
+  padding-bottom: 2.5rem;
   width: 100%;
   z-index: 3;
 }
@@ -217,7 +198,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.8rem; /* Vertical gap between name and link */
+  gap: 0.8rem;
   background: rgb(0 0 0 / 60%);
   padding: 1rem;
   width: 100%;
@@ -230,13 +211,11 @@ body {
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 1px;
-  /* This ensures the name 'glows' even if a scanline is passing over it */
   text-shadow: 0 0 8px rgb(var(--card-rgb)), 0 0 15px rgb(var(--card-rgb) / 50%);
 }
 
 .link {
   position: relative;
-  /* Changed to inline-flex to ensure the box centers its own content (the white text) */
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -246,7 +225,7 @@ body {
   font-size: 0.75rem;
   font-weight: bold;
   letter-spacing: 1px;
-  padding: 8px 20px; /* This padding creates the 'box' size based on the white text */
+  padding: 8px 20px;
   border: 1px solid rgb(var(--card-rgb));
   border-radius: 2px;
   background: transparent;
@@ -254,23 +233,19 @@ body {
   z-index: 5;
 }
 
-/* The 'Health Bar' (Background Fill) */
 .link::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
-  width: 100%; /* Keep width at 100% */
+  width: 100%;
   background-color: rgb(var(--card-rgb));
   z-index: -1;
-  
-  /* Use clip-path to 'hide' the bar by default */
   clip-path: inset(0 100% 0 0); 
   transition: clip-path 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* The 'Revealed' Text (Black Layer) */
 .link::after {
   content: attr(data-text);
   position: absolute;
@@ -278,15 +253,10 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-
-  /* Centering Logic: This centers the black text regardless of the white text's width */
   display: flex;
   align-items: center;
   justify-content: center;
-  
-  /* Remove fixed padding so it doesn't offset the flex centering */
-  padding: 0; 
-  
+  padding: 0;
   color: black;
   white-space: nowrap;
   z-index: 2;
@@ -308,19 +278,15 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 10; /* Places it above everything else in the card */
+  z-index: 10;
   cursor: pointer;
 }
 
-/* --- HOVER TRIGGERS --- */
-
-/* 1. Reveal the Bar and Black Text from left to right */
 .screen:hover .link::before,
 .screen:hover .link::after {
   clip-path: inset(0 0 0 0);
 }
 
-/* 2. Hide the White Text from left to right at the same time */
 .screen:hover .link span {
   clip-path: inset(0 0 0 100%);
 }
@@ -329,7 +295,6 @@ body {
   box-shadow: 0 0 15px rgb(var(--card-rgb) / 50%);
 }
 
-/* Update these to .webp */
 .card-1 { background-image: url('game1.webp'); }
 .card-2 { background-image: url('game2.webp'); }
 .card-3 { background-image: url('game3.webp'); }
@@ -340,7 +305,6 @@ body {
 @media(max-width: 1000px) { #game-grid { grid-template-columns: repeat(2, 1fr); } }
 @media(max-width: 650px) { #game-grid { grid-template-columns: 1fr; } }
 
-/* Panel Container */
 .bottom-panel {
   position: fixed;
   bottom: 0;
@@ -361,14 +325,13 @@ body {
   margin: 0 auto;
 }
 
-/* Scroller Section */
 .scroller-wrapper {
   display: flex;
-  align-items: center;     /* Centers everything on the vertical axis */
+  align-items: center;
   justify-content: flex-start;
   gap: 8px;
-  height: 1.5rem;          /* Force a strict height */
-  line-height: 1.5rem;     /* Match the height exactly */
+  height: 1.5rem;
+  line-height: 1.5rem;
   font-family: "Helvetica Neue", Arial, sans-serif;
   font-weight: bold;
   font-size: 1.2rem;
@@ -376,35 +339,30 @@ body {
   white-space: nowrap;
 }
 
-/* 2. The container must be exactly the height of one item */
 #master-container-scroller {
   height: 1.5rem;          
   overflow: hidden;
   position: relative;
-  display: block;          /* Keep as block to allow translateY to work */
+  display: block;
 }
 
-/* 3. The items must be identical in height with NO extra padding */
 .master-container-scroller_item {
   display: flex;
-  align-items: center;     /* Vertically centers text inside the item */
-  height: 1.5rem;          /* Strict match */
+  align-items: center;
+  height: 1.5rem;
   margin: 0;
   padding: 0;
   color: #76BCAD;
-  box-sizing: border-box;  /* Prevents padding from adding to height */
+  box-sizing: border-box;
   animation: scroll-footer 30s cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
 }
 
-/* 4. Ensure static text doesn't have its own alignment logic */
 .static-text {
   display: inline-block;
   height: 1.5rem;
-  line-height: 1.5rem;     /* Locked baseline */
+  line-height: 1.5rem;
 }
 
-/* 5. Keyframes using REM to stay consistent with the height */
-/* Total duration increased to 30s in the class below */
 @keyframes scroll-footer {
   0%, 8%     { transform: translateY(0); }
   10%, 18%   { transform: translateY(-1.5rem); }
@@ -418,7 +376,6 @@ body {
   90%, 100%  { transform: translateY(-13.5rem); }
 }
 
-/* Social Links Section */
 .social-links {
   display: flex;
   gap: 20px;
@@ -444,25 +401,21 @@ body {
   transition: all 0.3s ease;
 }
 
-/* LinkedIn - Brand Blue */
 .fa-linkedin {
   color: #00A0DC; 
   filter: drop-shadow(0 0 5px rgba(0, 160, 220, 0.4));
 }
 
-/* Itchio - Brand Pink/Red */
 .fa-itch-io {
   color: #FF2449;
   filter: drop-shadow(0 0 5px rgba(255, 36, 73, 0.4));
 }
 
-/* YouTube - Brand Red */
 .fa-youtube {
   color: #FF0000;
   filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.4));
 }
 
-/* Optional: Keep the Mail and Resume icons neutral or give them a theme color */
 .fa-envelope, .fa-file-lines{
-  color: #76BCAD; /* Using your scroller green for consistency */
+  color: #76BCAD;
 }

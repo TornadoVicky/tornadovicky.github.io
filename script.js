@@ -1,8 +1,6 @@
-// ==========================================
-// 1. CONFIGURATION FOR THE HEADER SPINNER
-// ==========================================
+// Title config
+
 const config = {
-  // All strings MUST be exactly 14 characters
   texts: [
     "DEV  PORTFOLIO", 
     "SHUBHAM  KUMAR", 
@@ -19,9 +17,8 @@ let currentTextIndex = 0;
 const getPrizeText = () => document.getElementById("prize-text");
 const getTracks = () => document.querySelectorAll(".digit > .digit-track");
 
-// ==========================================
-// 2. HEADER SPINNER ENGINE
-// ==========================================
+// Title Spin
+
 const setup = () => {
   const container = getPrizeText();
   if (!container) return;
@@ -46,7 +43,6 @@ const buildTracks = (startingText) => {
     }
     trackChars = trackChars.concat(ALPHABET);
 
-    // Height set to 3.5rem to match your CSS font sizes
     track.innerHTML = trackChars.map(c => 
       `<div style="height: 3.5rem; display: flex; align-items: center; justify-content: center;">
         ${c === ' ' ? '&nbsp;' : c}
@@ -71,7 +67,6 @@ const animateTo = (targetText) => {
     const randomDelay = Math.floor(Math.random() * 1000);
     track.style.transitionDelay = `${randomDelay}ms`;
     
-    // Multiplier updated to -3.5 to match the line height of 3.5rem
     track.style.translate = `0rem ${itemsToScroll * -3.5}rem`; 
   });
 };
